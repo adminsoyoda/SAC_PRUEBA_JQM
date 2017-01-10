@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="com.phonegap.SAC_PRUEBA_JQM" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.phonegap.SAC_PRUEBA_JQM"
+        version = "1.0.0">
 
 <name>SAC_PRUEBA_JQM</name>
 <description>
@@ -9,11 +12,7 @@
 <author href="http://www.soyoda.com" email="sistemas@soyodaecuador.com">
   Desarrollo Soyoda
 </author>
-
-<content src="index.html" />
  
-<preference name="phonegap-version"       value="cli-6.3.0" />
-
 <!-- Core plugins -->
   <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1"/>
   <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1"/>
