@@ -1,0 +1,147 @@
+﻿
+
+<script>
+
+    (function() {
+        $("#URL_SINCRONIZAR").val(syncServer);
+        //setIdRegistered();
+    })();
+
+    function Test() {
+        AjaxSAC(syncServer, "", true, function (callback) {
+            alert(callback);
+            if (callback == "Test Ok") {
+                UsuariosDisponibles();
+            }
+        });
+    }
+
+    function UsuariosDisponibles() {
+        AjaxSAC(syncServer + "/UsuariosDisponibles", "", true, function (callback) {
+            var lista_usuarios = "<option value=''>Seleccionar Empleado</option>";
+            var obj = jQuery.parseJSON(callback);
+            $.each(obj, function (i, valor) {
+                lista_usuarios = lista_usuarios + "<option value='" + valor.CODINTERNO + "'>" + unescape(valor.NOMBRE) +"</option>";
+            });
+            $("#lista_usuarios").html(lista_usuarios);
+        });
+    }
+
+    function fijarUsuario(CODINTERNO, NOMBRE) {
+        $("#CODIGOINTERNO").val(CODINTERNO);
+        $("#NOMBRE").val(NOMBRE);
+    }
+
+    function GuardarConfiguracion() {
+        if ($("#IDGOOGLE").val() == '')      { alert("Ingresar IDGOOGLE..."); $("#IDGOOGLE").focus(); return true; }
+        if ($("#lista_usuarios").val() == '') { alert("Seleccionar Vendedor..."); $("#lista_usuarios").focus(); return true; }
+
+        var dataPost = {
+            CODIGOINTERNO: $("#lista_usuarios").val(),
+            IDGOOGLE: $("#IDGOOGLE").val()
+        };
+
+        AjaxSAC(syncServer + "/GuardarConfiguracion", dataPost, true, function (callback) {
+            if (callback == "Ok") {
+                alert("Configuracion Exitosa");
+                SyncExeReady($("#lista_usuarios").val(), 'SyncExeReady', function (RETORNO) {
+                    //CREACION DE TIME CONTROL
+                    BDActualizacion('CREATE TABLE IF NOT EXISTS APP_TIME (ULTIMAFECHA DATETIME null)');
+                    BDActualizacion('DELETE FROM APP_TIME');
+                    BDActualizacion('INSERT INTO APP_TIME VALUES("' + fecActual() + '")');
+                    
+                    //Sincronizacion General
+                    SyncExe($("#lista_usuarios").val(),true, function (RETORNO) {
+                        contentPage('pages/login.html');
+                    });
+                    
+                    contentPage('pages/login.html');
+                });
+            } else {
+                alert("No Se guardo el Registro... " + callback);
+            }
+        });
+    }
+
+    window.onNotification = function (e) {
+        switch (e.event) {
+            case 'registered':
+                if (e.regid.length > 0) {
+                    //console.log("Regid " + e.regid);
+                    alert('Google ID API = ' + e.regid);
+                    //Cuando se registre le pasamos el regid al input 
+                    document.getElementById('IDGOOGLE').value = e.regid;
+                }
+                break;
+
+            case 'message':
+                // NOTIFICACION!!! 
+                alert('Mensaje de prueba = ' + e.message + ' msgcnt = ' + e.msgcnt);
+                break;
+            case 'error':
+                alert('GCM error = ' + e.msg);
+                break;
+            default:
+                alert('An unknown GCM event has occurred');
+                break;
+        }
+    }
+
+</script>
+
+<div role="main" class="ui-content jqm-content" style="margin: 20px;border: 1px solid #CCC;">
+
+    <div class="ui-field-contain">
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <div class="ui-bar" style="height:60px">
+                    <div><img src="img/Logo.png" style='width:66px; padding-bottom:10px;'></div>
+                </div>
+            </div>
+            <div class="ui-block-b">
+                <div class="ui-bar" style="height:60px">
+                    <div style="text-align:right; font-size:14px" class="cus-ele-pad-top-15">
+                        <strong style='font-size:15px; color:#005FAA; text-decoration:underline;'>Configuraci&oacute;n Inicial de Usuarios</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-grid-a">
+        <div class="ui-block-a">
+            <div class="cus-ele-pad-top-10" style="height:60px">
+                <input type="text" id="URL_SINCRONIZAR"/>
+            </div>
+        </div>
+        <div class="ui-block-b">
+            <div class="ui-bar cus-sin-pad-right" style="height:60px">
+                <a class="ui-btn cus-pri-ele" data-inline="true" onclick="Test()">Test...</a>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" class="form-control" aria-label="..." disabled="disabled" id='CODIGOINTERNO'/>
+
+    <br>
+    <div class="ui-field-contain">
+        <select name="lista_usuarios" id="lista_usuarios">
+            <option value=''>Seleccionar Empleado</option>
+        </select>
+    </div>
+    
+    <br>
+    
+    <input type="text" name="IDGOOGLE" id="IDGOOGLE" value="" placeholder="ID GOOGLE" disabled>
+    
+    <br>
+    
+    <form>
+        <label>
+            <input id="ACEPTADISPOSE" type="checkbox" checked disabled>Carga Inicial de datos...
+        </label>
+    </form>
+
+    <a class="ui-btn cus-pri-ele" data-inline="true" onclick="GuardarConfiguracion()">Guardar</a>  
+</div>
+    

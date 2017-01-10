@@ -1,0 +1,56 @@
+<script>
+    //Load de Action
+    $(document).ready(function () {
+        BDConsulta("SELECT * FROM APP_USUARIO;", function (obj) {
+            AppGestorName = "";
+            AppGestorFechaActuali = "";
+            AppGestorName = unescape(obj.NOMBRE);
+            AppGestorFechaActuali = obj.FECHACREACION;
+            $("#AppGestorName_Top").html(AppGestorName);
+            $("#AppGestorName_Menu").html(AppGestorName.substring(0, 20) + '...');
+            $("#AppGestorName_Logout").html(AppGestorName);
+            $("#AppGestorFechaActuali_Logout").html(AppGestorFechaActuali);
+        });
+
+        //Menu Izquierdo
+        BDConsultaOBJ("SELECT * FROM APP_MENU;", function (obj) {
+            for (var i = 0; i < obj.rows.length; i++) {
+                var row = obj.rows.item(i);
+                $("#AppGestorOption").append(row.MENU);
+            }
+        });
+
+        BDConsultaOBJ("SELECT * FROM APP_EMPRESA;", function (obj) {
+            for (var i = 0; i < obj.rows.length; i++) {
+                var row = obj.rows.item(i);
+                if(i==0){
+                    masterEmpresa=row.RAZONSOCIAL
+                 }
+            }
+        });
+        //Option Initial        
+        //loadOption('10000001');
+    });
+
+    document.addEventListener("backbutton", onBackKeyDown);
+    
+    function onBackKeyDown(){
+        navigator.notification.confirm('¿Salir de la aplicación?',function(button) {
+          if (button == 2) {
+            navigator.app.exitApp();
+          }
+        },'Salir', 'No,Si');return false;
+    } 
+    
+    function CerrarSesion() {
+        var res = confirm("¿Seguro desea Cerrar Sesion?")
+        if(res==true){
+            BDActualizacion("UPDATE APP_USUARIO SET ACTIVO='I'");
+            contentPage('pages/login.html');
+        }
+    }
+</script>
+
+<div>
+	Hola mundo
+</div>

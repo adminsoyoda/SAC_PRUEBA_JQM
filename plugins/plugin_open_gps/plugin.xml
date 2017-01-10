@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="plugin_open_gps"
+      version="1.0.0">
+    <name>GPS</name>
+    <description>Start or stop GPS</description>
+    <license>MIT</license>
+    <keywords>phonegap,gps</keywords>
+  
+    <js-module src="www/js/GpsService.js" name="GpsService">
+    </js-module>
+    <js-module src="index.js" name="ListenServerGPS">
+    </js-module>
+ 
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="GpsService">
+                <param name="android-package" value="org.apache.cordova.plugin.GpsService"/>
+            </feature>		
+        </config-file>
+ 
+        <source-file src="src/org/apache/cordova/plugin/DataBase.java" target-dir="src/org/apache/cordova/plugin" />      
+		<source-file src="src/org/apache/cordova/plugin/GpsService.java" target-dir="src/org/apache/cordova/plugin" />  
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest" mode="add">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+            <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+            <uses-permission android:name="org.apache.cordova.plugin.permission.WRITE_SETTINGS"/>
+            <uses-permission android:name="org.apache.cordova.plugin.permission.WRITE_SECURE_SETTINGS"/>
+        </config-file>	
+
+     </platform>          
+</plugin>

@@ -1,0 +1,82 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "plugin_open_gps": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.phonegap.SAC_PRUEBA_JQM"
+        }
+    }
+}
