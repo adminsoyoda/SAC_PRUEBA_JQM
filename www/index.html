@@ -33,6 +33,7 @@
         }
         catch(err) {
             alert(err.message);
+            contentPage('pages/login.html'); 
         }
     });
     
@@ -140,6 +141,7 @@
 
     <button id="loader_sys_btn_show" class="show-page-loading-msg cus-display-none" data-theme="b" data-align="center" data-textonly="true" data-textvisible="true" data-msgtext="Custom Loader" data-html="<div style='text-align:center'><span class='ui-bar ui-shadow ui-overlay-d ui-corner-all'><img src='public/img/loading.gif' style='width: 50px;'><h2>Espere por favor...</h2></span></div>" data-iconpos="right"></button>
     <button class="hide-page-loading-msg cus-display-none" id="loader_sys_btn_hide"></button>
+
     <div id="deviceready" class="blink"> 
         <p class="event listening">Connecting to Device</p> 
         <p class="event received">Device is Ready</p> 
