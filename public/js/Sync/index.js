@@ -1,14 +1,16 @@
 var registerId="";//variable contenedora de id
 var app = {
     // Application Constructor 
-    initialize: function() {
+    initialize: function (callback) {
         this.bindEvents();
-    },
+
+        callback();
+    },    
     // Bind Event Listeners 
     // 
     // Bind any events that are required on startup. Common events are: 
     // 'load', 'deviceready', 'offline', and 'online'. 
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener("pause", this.onDeviceReady, false);
     },
@@ -16,11 +18,11 @@ var app = {
     // 
     // The scope of 'this' is the event. In order to call the 'receivedEvent' 
     // function, we must explicity call 'app.receivedEvent(...);' 
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event 
-    receivedEvent: function(id) {
+    receivedEvent: function (id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
